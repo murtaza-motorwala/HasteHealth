@@ -305,7 +305,7 @@ function TenantBranding({ isOwner }: Readonly<{ isOwner: boolean }>) {
       }
     >
       {loadingBranding ? (
-        <div className="flex items-center gap-2 py-4 text-sm text-slate-500">
+        <div className="flex items-center gap-2 py-4 font-mono text-xs text-[var(--ci-muted)]">
           <Loading />
           <span>Loading tenant branding...</span>
         </div>
@@ -668,7 +668,7 @@ function SettingsContent({ user, scope }: Readonly<SettingsProps>) {
           }
         >
           {loadingScopes ? (
-            <div className="flex items-center gap-2 py-4 text-sm text-slate-500">
+            <div className="flex items-center gap-2 py-4 font-mono text-xs text-[var(--ci-muted)]">
               <Loading />
               <span>Loading authorized apps...</span>
             </div>
@@ -732,7 +732,7 @@ function SettingsContent({ user, scope }: Readonly<SettingsProps>) {
         }
       >
         {loadingRefreshTokens ? (
-          <div className="flex items-center gap-2 py-4 text-sm text-slate-500">
+          <div className="flex items-center gap-2 py-4 font-mono text-xs text-[var(--ci-muted)]">
             <Loading />
             <span>Loading active sessions...</span>
           </div>

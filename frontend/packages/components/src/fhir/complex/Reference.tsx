@@ -79,7 +79,7 @@ const ReferenceView = ({
     />
   ) : (
     <div className="flex justify-center items-center">
-      <span className="font-semibold text-slate-600">Resource not found</span>
+      <span className="font-mono text-xs text-[var(--ci-muted)]">Resource not found</span>
     </div>
   );
 };
@@ -94,14 +94,14 @@ const SearchResult = ({
   return (
     <button
       type="button"
-      className="hover:bg-brand-200 py-2 px-4 cursor-pointer border w-full text-left"
+      className="hover:bg-[var(--ci-surface-raised)] py-2 px-4 cursor-pointer border border-[var(--ci-line)] bg-[var(--ci-surface)] w-full text-left font-mono text-xs transition-colors"
       onClick={(_e) =>
         onChange?.call(this, {
           reference: `${resource.resourceType}/${resource.id}`,
         })
       }
     >
-      <span className="font-semibold text-slate-700">
+      <span className="font-semibold text-[var(--ci-ink)]">
         {resource.resourceType}/{resource.id}
       </span>
     </button>
@@ -123,7 +123,7 @@ const ReferenceSearch = ({
 
   return (
     <div>
-      <div className="flex space-x-1 text-slate-700  ">
+      <div className="flex space-x-1 text-[var(--ci-ink)] font-mono text-xs">
         <div className="w-36">
           <Select
             value={resourceType}
@@ -203,7 +203,7 @@ export const FHIRReferenceEditable = ({
               <div className="flex items-center gap-1.5">
                 <button
                   type="button"
-                  className="text-brand-400 hover:text-brand-500 cursor-pointer"
+                  className="text-[var(--ci-signal)] hover:underline cursor-pointer font-mono text-xs"
                   onClick={() => openDisplay(true)}
                 >
                   {value?.reference}
@@ -212,7 +212,7 @@ export const FHIRReferenceEditable = ({
                   <button
                     type="button"
                     aria-label="Search for a resource to reference"
-                    className="text-slate-700 hover:text-brand-700 cursor-pointer font-semibold"
+                    className="text-[var(--ci-muted)] hover:text-[var(--ci-signal)] cursor-pointer transition-colors"
                     onClick={() => openSearch(true)}
                   >
                     <MagnifyingGlassCircleIcon className="w-5 h-5" />

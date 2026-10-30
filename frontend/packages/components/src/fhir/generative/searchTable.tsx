@@ -140,9 +140,9 @@ function SearchColumnModalBody({
   } = useRowKeys(value.value.length);
 
   return (
-    <div className="space-y-4 text-slate-600">
-      <fieldset className="text-sm">
-        <legend className="mb-1">Modifiers</legend>
+    <div className="space-y-4 font-mono text-xs text-[var(--ci-ink)]">
+      <fieldset className="text-xs">
+        <legend className="mb-1 uppercase tracking-wider text-[var(--ci-muted)]">Modifiers</legend>
         <div>
           <Select
             value={value.modifier}
@@ -161,8 +161,8 @@ function SearchColumnModalBody({
         </div>
       </fieldset>
 
-      <fieldset className=" text-sm">
-        <legend className="mb-1">Values</legend>
+      <fieldset className="text-xs">
+        <legend className="mb-1 uppercase tracking-wider text-[var(--ci-muted)]">Values</legend>
         <div className="space-y-1">
           {value.value.map((v, i) => {
             return (
@@ -194,7 +194,7 @@ function SearchColumnModalBody({
           })}
           <button
             type="button"
-            className="cursor-pointer mt-1 text-xs hover:text-brand-500 text-slate-400"
+            className="cursor-pointer mt-1 font-mono text-xs text-[var(--ci-muted)] hover:text-[var(--ci-signal)] transition-colors"
             onClick={() => {
               onRowAdd();
               props.onChange({
@@ -264,15 +264,15 @@ function SearchColumnModal(props: Readonly<SearchColumnModalProps>) {
     <div>
       <div className="mb-2">
         <div>
-          <span className="font-semibold text-base">
+          <span className="font-mono text-sm font-semibold text-[var(--ci-ink)]">
             {props.searchParameter.name}
           </span>
-          <span className="ml-2 text-slate-400 text-sm">
+          <span className="ml-2 font-mono text-xs text-[var(--ci-muted)]">
             {props.searchParameter.type}
           </span>
         </div>
-        <div className="mt-1 text-xs text-nowrap truncate">
-          <span className="ml-2 text-slate-400 ">
+        <div className="mt-1 text-xs text-nowrap truncate font-mono">
+          <span className="ml-2 font-mono text-xs text-[var(--ci-muted)]">
             {props.searchParameter.expression}
           </span>
         </div>

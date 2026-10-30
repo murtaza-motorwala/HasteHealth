@@ -172,7 +172,7 @@ function RepeatingParameterField({
           <button
             type="button"
             aria-label={`Remove ${definition.name} ${index + 1}`}
-            className="mt-1.5 text-slate-400 hover:text-red-600"
+            className="mt-1.5 text-[var(--ci-muted)] hover:text-red-500 transition-colors"
             onClick={() => {
               onRemove(index);
               onEntries(entries.filter((_, i) => i !== index));
@@ -222,7 +222,7 @@ function ParameterField({
           !isEmptyEntry(entry) && (
             <button
               type="button"
-              className="text-xs text-slate-500 hover:text-slate-800"
+              className="font-mono text-xs text-[var(--ci-muted)] hover:text-[var(--ci-ink)] transition-colors"
               onClick={() => onEntries(rest)}
             >
               Clear
@@ -288,7 +288,7 @@ export function OperationParametersEditor({
     );
   } else if (definitions.length === 0) {
     body = (
-      <p className="text-sm text-slate-500">
+      <p className="font-mono text-xs text-[var(--ci-muted)]">
         This operation declares no {use === "in" ? "input" : "output"}{" "}
         parameters.
       </p>
@@ -308,7 +308,7 @@ export function OperationParametersEditor({
   return (
     <div className="flex flex-col gap-3">
       <div className="flex items-center gap-2">
-        <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+        <span className="font-mono text-xs font-semibold uppercase tracking-wider text-[var(--ci-muted)]">
           {title}
         </span>
         <div className="flex-1" />

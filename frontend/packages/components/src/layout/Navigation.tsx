@@ -58,7 +58,7 @@ export const ProfileDropdown = ({ user, children }: ProfileDropdownProps) => {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <div className="bg-white absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <div className="bg-[var(--ci-surface)] border border-[var(--ci-line)] text-[var(--ci-ink)] absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-none py-1 shadow-2xl focus:outline-none">
           {children}
         </div>
       </Transition>
@@ -73,9 +73,9 @@ export const Navigation = ({
   userNavigation,
   user = {},
   brand = {
-    name: "HasteHealth",
+    name: "FHIR Fly",
     logo: {
-      url: "https://haste.health/img/logo.svg",
+      url: "/logo.svg",
     },
   },
 }: NavigationProps) => {

@@ -60,11 +60,11 @@ function RegistrationInformation({ id }: Readonly<{ id: id }>) {
         </p>
       </section>
 
-      <section className="space-y-2 rounded-md border border-slate-200 bg-white p-3">
-        <h3 className="text-sm font-semibold text-slate-900">
+      <section className="space-y-2 rounded-none border border-[var(--ci-line)] bg-[var(--ci-surface)] p-3">
+        <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-[var(--ci-ink)]">
           Registration Information
         </h3>
-        <p className="text-sm text-slate-500">
+        <p className="text-xs text-[var(--ci-muted)]">
           Registration information for registering an OIDC client with this
           identity provider.
         </p>

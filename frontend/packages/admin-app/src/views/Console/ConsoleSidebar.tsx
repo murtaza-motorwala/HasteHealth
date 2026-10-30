@@ -120,8 +120,8 @@ function TypeRow({
       </button>
       <button
         className={classNames(
-          "rounded p-1 text-slate-300 hover:text-amber-500",
-          pinned ? "visible text-amber-500" : "invisible group-hover:visible",
+          "p-1 text-[var(--ci-muted)] hover:text-[var(--ci-signal)] transition-colors",
+          pinned ? "visible text-[var(--ci-signal)]" : "invisible group-hover:visible",
         )}
         onClick={() => onTogglePin(type)}
         title={pinned ? `Unpin ${type}` : `Pin ${type}`}
@@ -302,7 +302,7 @@ export function ConsoleSidebar({
     ));
   } else {
     typeList = (
-      <li className="px-2 py-2 text-xs text-slate-400">
+      <li className="px-2 py-2 font-mono text-xs text-[var(--ci-muted)]">
         No type matches “{filter}”.
       </li>
     );

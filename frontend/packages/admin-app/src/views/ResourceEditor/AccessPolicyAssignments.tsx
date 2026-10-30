@@ -96,7 +96,7 @@ function AssignmentTarget({
           <span className="truncate font-medium">{reference.reference}</span>
         )}
         {name && (
-          <span className="truncate text-xs text-slate-500">
+          <span className="truncate text-xs font-mono text-[var(--ci-muted)]">
             {reference.reference}
           </span>
         )}
@@ -119,7 +119,7 @@ function AddAssignment({
   const [link, setLink] = useState<Reference | undefined>();
 
   return (
-    <div className="flex flex-wrap items-end gap-2 rounded-md border border-slate-200 p-3">
+    <div className="flex flex-wrap items-end gap-2 rounded-none border border-[var(--ci-line)] bg-[var(--ci-surface)] p-3">
       <div className="flex-1 min-w-48">
         <FHIRReferenceEditable
           label="Assign to (Membership, ClientApplication or OperationDefinition)"
@@ -404,7 +404,7 @@ export default function AccessPolicyAssignments({
 
   if (!policyReference) {
     return (
-      <div className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-600">
+      <div className="rounded-none border border-[var(--ci-line)] bg-[var(--ci-surface-raised)] px-3 py-2 font-mono text-xs text-[var(--ci-ink)]">
         Create the access policy first, then assign it here.
       </div>
     );
@@ -412,17 +412,17 @@ export default function AccessPolicyAssignments({
 
   return (
     <div className="space-y-3">
-      <div className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-600">
+      <div className="rounded-none border border-[var(--ci-line)] bg-[var(--ci-surface-raised)] px-3 py-2 font-mono text-xs text-[var(--ci-ink)]">
         This policy applies to the memberships, client applications and
         operations below. Each is an{" "}
-        <span className="font-mono">AccessPolicyV2Assignment</span>; changes
+        <span className="font-mono">{`AccessPolicyV2Assignment`}</span>; changes
         take effect the next time the user or client gets a token.
       </div>
 
       <AddAssignment onAdd={addAssignment} />
 
       {syncing && (
-        <div className="flex items-center gap-2 text-xs text-slate-500">
+        <div className="flex items-center gap-2 text-xs font-mono text-[var(--ci-muted)]">
           <Loading className="w-4 h-4" />
           <span>Updating list…</span>
         </div>
@@ -434,8 +434,8 @@ export default function AccessPolicyAssignments({
         </div>
       ) : (
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm text-slate-600">
-            <thead className="border-b text-xs font-medium">
+          <table className="w-full text-left font-mono text-xs text-[var(--ci-ink)] border-collapse">
+            <thead className="border-b border-[var(--ci-line)] bg-[var(--ci-surface-raised)] text-[11px] font-medium uppercase tracking-wider text-[var(--ci-muted)]">
               <tr>
                 <th className="px-4 py-2">Assigned to</th>
                 <th className="px-4 py-2">Change</th>
@@ -447,14 +447,14 @@ export default function AccessPolicyAssignments({
                 <tr>
                   <td
                     colSpan={3}
-                    className="px-4 py-6 text-center text-slate-500"
+                    className="px-4 py-6 text-center font-mono text-xs text-[var(--ci-muted)]"
                   >
                     Not assigned to anything yet.
                   </td>
                 </tr>
               )}
               {assignments.map((assignment) => (
-                <tr key={assignment.id} className="border-b">
+                <tr key={assignment.id} className="border-b border-[var(--ci-line)] hover:bg-[var(--ci-surface-raised)] transition-colors">
                   <td className="px-4 py-2">
                     <AssignmentTarget
                       reference={assignment.link}
@@ -508,7 +508,7 @@ export default function AccessPolicyAssignments({
                       </Tag>
                     </div>
                   </td>
-                  <td className="px-4 py-2 text-xs text-slate-500">
+                  <td className="px-4 py-2 font-mono text-xs text-[var(--ci-muted)]">
                     Set in <span className="font-mono">target.link</span> on the
                     policy.
                   </td>

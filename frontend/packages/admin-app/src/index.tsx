@@ -672,7 +672,7 @@ function ProjectRoot() {
         {sidebarOpen && (
           <div className="fixed inset-0 z-40 flex lg:hidden">
             <div
-              className="absolute inset-0 bg-slate-900/30"
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
               onClick={() => setSidebarOpen(false)}
             />
             <div className="relative h-full">{sidebar}</div>
