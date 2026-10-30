@@ -219,7 +219,7 @@ function LabelWrapper({
   const found = getElementDefinition(sd, elementIndex);
   if (!showLabel) return children;
   return (
-    <div className="space-y-1">
+    <div className="space-y-2">
       <div className="flex items-start gap-2">
         <div
           className={classNames(
@@ -263,7 +263,7 @@ function LabelWrapper({
         )}
       </div>
 
-      <div className="font-mono text-xs leading-4 text-[var(--ci-muted)]">
+      <div className="text-xs leading-5 text-[var(--ci-muted)]">
         {found.element.short}
       </div>
 
@@ -320,7 +320,7 @@ const MetaValueSingular = React.memo((props: MetaProps<any, any>) => {
   return (
     <div className="space-y-1.5">
       <LabelWrapper {...props}>
-        <div className="space-y-2 rounded-none border border-[var(--ci-line)] bg-[var(--ci-surface-raised)] p-2.5">
+        <div className="space-y-2 rounded-none border border-[var(--ci-line)] bg-[var(--ci-surface-raised)] p-3">
           {children.map((childIndex) => {
             const childElement = getElementDefinition(sd, childIndex);
             // Skipping extensions and nested resources for now
@@ -409,7 +409,7 @@ const MetaValueArray = React.memo((props: MetaProps<any, any>) => {
           {value.map((v, i) => (
             <div
               className={classNames(
-                "relative rounded-none border border-[var(--ci-line)] bg-[var(--ci-surface)] p-2.5 pr-8 text-[var(--ci-ink)]",
+                "relative rounded-none border border-[var(--ci-line)] bg-[var(--ci-surface)] p-3 pr-10 text-[var(--ci-ink)]",
               )}
               key={`${descend(pointer, i)}`}
             >
@@ -428,7 +428,7 @@ const MetaValueArray = React.memo((props: MetaProps<any, any>) => {
               {value.length > 0 && (
                 <button
                   type="button"
-                  className="absolute right-1.5 top-1.5 rounded-none p-0.5 text-[var(--ci-muted)] transition-colors hover:bg-[var(--ci-surface-raised)] hover:text-[var(--ci-ink)]"
+                  className="absolute right-2 top-2 rounded-none p-1 text-[var(--ci-muted)] transition-colors hover:bg-[var(--ci-surface-raised)] hover:text-[var(--ci-ink)]"
                   onClick={() => {
                     onChange({
                       path: descend(pointer, i),
@@ -443,7 +443,7 @@ const MetaValueArray = React.memo((props: MetaProps<any, any>) => {
             </div>
           ))}
         </div>
-        <div className="pt-0.5">
+        <div className="pt-1">
           <Add
             onChange={() => {
               onChange({
@@ -492,7 +492,7 @@ export const FHIRGenerativeForm = ({
   }, [setValue]);
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-4">
       <MetaValueSingular
         fhirVersion={fhirVersion}
         client={client}

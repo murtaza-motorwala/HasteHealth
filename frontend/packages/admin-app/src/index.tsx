@@ -381,28 +381,24 @@ function Navbar({ showLogo = true }: Readonly<{ showLogo?: boolean }>) {
               // imageUrl: auth0.user?.picture,
             }}
           >
-            <div>
-              <div className="mt-2 bg-[var(--ci-surface-raised)] border border-[var(--ci-line)]">
-                <button
-                  className="block w-full cursor-pointer px-4 py-2 text-left text-sm text-[var(--ci-ink)] hover:bg-[var(--ci-signal-soft)] hover:text-[var(--ci-signal-ink)] transition-colors"
-                  onClick={() => {
-                    navigate(generatePath("/settings", {}));
-                  }}
-                  type="button"
-                >
-                  Settings
-                </button>
-                <button
-                  className="block w-full cursor-pointer px-4 py-2 text-left text-sm text-[var(--ci-ink)] hover:bg-[var(--ci-signal-soft)] hover:text-[var(--ci-signal-ink)] transition-colors"
-                  onClick={() => {
-                    hasteHealth.logout(window.location.origin);
-                  }}
-                  type="button"
-                >
-                  Sign out
-                </button>
-              </div>
-            </div>
+            <button
+              className="block w-full cursor-pointer px-4 py-2 text-left font-mono text-xs uppercase tracking-wider text-[var(--ci-ink)] transition-colors hover:bg-[var(--ci-signal-soft)] hover:text-[var(--ci-signal-ink)]"
+              onClick={() => {
+                navigate(generatePath("/settings", {}));
+              }}
+              type="button"
+            >
+              Settings
+            </button>
+            <button
+              className="block w-full cursor-pointer px-4 py-2 text-left font-mono text-xs uppercase tracking-wider text-[var(--ci-ink)] transition-colors hover:bg-[var(--ci-signal-soft)] hover:text-[var(--ci-signal-ink)]"
+              onClick={() => {
+                hasteHealth.logout(window.location.origin);
+              }}
+              type="button"
+            >
+              Sign out
+            </button>
           </ProfileDropdown>
         </div>
       </div>
@@ -646,22 +642,20 @@ function ProjectRoot() {
               name: hasteHealth.user?.given_name || hasteHealth.user?.email,
             }}
           >
-            <div className="mt-2 bg-[var(--ci-surface-raised)] border border-[var(--ci-line)]">
-              <button
-                className="block w-full cursor-pointer px-4 py-2 text-left text-sm text-[var(--ci-ink)] hover:bg-[var(--ci-signal-soft)] hover:text-[var(--ci-signal-ink)] transition-colors"
-                onClick={() => go("/settings")}
-                type="button"
-              >
-                Settings
-              </button>
-              <button
-                className="block w-full cursor-pointer px-4 py-2 text-left text-sm text-[var(--ci-ink)] hover:bg-[var(--ci-signal-soft)] hover:text-[var(--ci-signal-ink)] transition-colors"
-                onClick={() => hasteHealth.logout(window.location.origin)}
-                type="button"
-              >
-                Sign out
-              </button>
-            </div>
+            <button
+              className="block w-full cursor-pointer px-4 py-2 text-left font-mono text-xs uppercase tracking-wider text-[var(--ci-ink)] transition-colors hover:bg-[var(--ci-signal-soft)] hover:text-[var(--ci-signal-ink)]"
+              onClick={() => go("/settings")}
+              type="button"
+            >
+              Settings
+            </button>
+            <button
+              className="block w-full cursor-pointer px-4 py-2 text-left font-mono text-xs uppercase tracking-wider text-[var(--ci-ink)] transition-colors hover:bg-[var(--ci-signal-soft)] hover:text-[var(--ci-signal-ink)]"
+              onClick={() => hasteHealth.logout(window.location.origin)}
+              type="button"
+            >
+              Sign out
+            </button>
           </ProfileDropdown>
         </div>
       </header>
@@ -693,7 +687,7 @@ function ProjectRoot() {
         </main>
       </div>
 
-      <footer className="flex h-8 shrink-0 items-center justify-between border-t border-[var(--ci-line)] bg-[var(--ci-surface)] px-4 text-[11px] text-[var(--ci-ink-subtle)] font-mono">
+      <footer className="flex h-8 shrink-0 items-center justify-between border-t border-[var(--ci-line)] bg-[var(--ci-surface)] px-4 text-[11px] text-[var(--ci-ink-subtle)]">
         <div>© 2026 FHIR Fly. All rights reserved.</div>
         <div className="hidden sm:block">
           Made with <span aria-hidden="true">❤️</span> and <span aria-hidden="true">🔥</span> by Murtuza Motorwala

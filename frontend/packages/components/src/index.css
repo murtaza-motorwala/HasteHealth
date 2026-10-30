@@ -72,21 +72,21 @@
     @apply border-red-500 focus:border-red-500 focus:outline-none;
   }
   .btn {
-    @apply px-4 py-2 rounded-none inline-block cursor-pointer font-medium text-sm border border-[var(--ci-line)] disabled:bg-[var(--ci-surface-sunken)] disabled:cursor-not-allowed disabled:text-[var(--ci-ink-muted)];
-    transition: border-color var(--ci-ease), box-shadow var(--ci-ease), background-color var(--ci-ease);
+    @apply inline-flex min-h-8 cursor-pointer items-center justify-center gap-1.5 rounded-none border border-[var(--ci-line)] px-3 py-1.5 font-mono text-xs font-medium tracking-wide disabled:bg-[var(--ci-surface-sunken)] disabled:cursor-not-allowed disabled:text-[var(--ci-ink-muted)] disabled:opacity-60;
+    transition: border-color var(--ci-ease), box-shadow var(--ci-ease), background-color var(--ci-ease), color var(--ci-ease);
   }
   .btn:not(:disabled):hover {
     border-color: var(--ci-hover-line);
     box-shadow: var(--ci-hover-shadow);
   }
   .btn-primary {
-    @apply text-white bg-[var(--ci-signal)] border-[var(--ci-signal)] hover:bg-[var(--ci-signal-hover)] font-semibold;
+    @apply border-[var(--ci-signal)] bg-[var(--ci-signal)] text-white font-semibold hover:bg-[var(--ci-signal-hover)];
   }
   .btn-secondary {
-    @apply text-[var(--ci-ink)] bg-[var(--ci-surface-raised)] border border-[var(--ci-line)] hover:bg-[var(--ci-surface-sunken)];
+    @apply border-[var(--ci-line)] bg-[var(--ci-surface-raised)] text-[var(--ci-ink)] hover:bg-[var(--ci-surface-sunken)];
   }
   .btn-error {
-    @apply text-white bg-red-600 hover:bg-red-700 border-red-600;
+    @apply border-red-600 bg-red-600 text-white hover:bg-red-700;
   }
 }
 
@@ -94,10 +94,19 @@
   background-color: var(--ci-surface) !important;
   color: var(--ci-ink) !important;
   font-family: var(--ci-font-mono) !important;
+  font-size: 12px;
+  line-height: 1.7;
 }
 .cm-editor .cm-scroller {
   overflow: auto;
   font-family: var(--ci-font-mono) !important;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.cm-editor .cm-content,
+.cm-editor .cm-line {
+  font-size: 12px;
+  line-height: 1.7;
 }
 .cm-editor .cm-gutters {
   background-color: var(--ci-surface-sunken) !important;

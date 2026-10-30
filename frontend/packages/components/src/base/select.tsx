@@ -62,7 +62,7 @@ export const Select = ({
           <div className="relative">
             <Combobox.Input
               className={classNames(
-                "outline-none w-full leading-5 text-[var(--ci-ink)] bg-transparent font-mono text-xs focus:ring-0",
+                "outline-none w-full leading-5 text-[var(--ci-ink)] bg-transparent font-mono text-xs focus:ring-0 pr-8",
                 inputClassNames({
                   hideBorder: false,
                   issues: issue ? [issue] : [],
@@ -72,8 +72,9 @@ export const Select = ({
               onChange={(event) => setQuery(event.target.value)}
             />
             <Combobox.Button
+              aria-label="Open options"
               className={classNames(
-                "absolute inset-y-0 right-0 flex items-center pr-2",
+                "absolute inset-y-0 right-0 flex cursor-pointer items-center px-2",
               )}
             >
               <ChevronUpDownIcon
