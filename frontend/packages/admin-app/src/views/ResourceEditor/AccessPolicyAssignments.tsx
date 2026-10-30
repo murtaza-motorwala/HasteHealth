@@ -84,7 +84,7 @@ function AssignmentTarget({
       <div className="flex flex-col min-w-0">
         {resourceType && resourceId ? (
           <Link
-            className="truncate font-medium text-brand-600 hover:text-brand-700 hover:underline"
+            className="truncate font-mono text-xs font-medium text-[var(--ci-signal)] hover:underline"
             to={generatePath("/r/:resourceType/:id", {
               resourceType,
               id: resourceId,

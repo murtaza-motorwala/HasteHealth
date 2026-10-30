@@ -66,9 +66,9 @@ function header(
 ) {
   return (
     <div className="flex items-center justify-between gap-2">
-      <label className="text-sm font-medium text-slate-800">
+      <label className="font-mono text-xs font-semibold uppercase tracking-wider text-[var(--ci-ink)]">
         {label(item)}
-        {item.required ? <span className="ml-1 text-red-600">*</span> : null}
+        {item.required ? <span className="ml-1 text-red-500">*</span> : null}
       </label>
       {showAdd ? (
         <button
@@ -409,7 +409,7 @@ const OpenChoiceRenderer: QuestionnaireItemRenderer = ({
                       }
                 }
               />
-              <p className="text-xs text-slate-500">
+              <p className="font-mono text-[11px] text-[var(--ci-muted)]">
                 Type to select an option or create a custom value.
               </p>
               {item.repeats && answer

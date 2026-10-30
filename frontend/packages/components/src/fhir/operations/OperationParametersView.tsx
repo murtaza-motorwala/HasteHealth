@@ -75,7 +75,7 @@ function DeclaredEntryValue({
 }>) {
   if (isPartParameter(definition)) {
     return (
-      <div className="border-l-2 border-slate-200 pl-3">
+      <div className="border-l border-[var(--ci-line)] pl-3">
         <ParameterList
           definitions={definition.part ?? []}
           list={entry.part ?? []}

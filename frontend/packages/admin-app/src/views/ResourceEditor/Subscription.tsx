@@ -106,7 +106,7 @@ function ChannelParameters({
             <div className="mt-1">
               <button
                 type="button"
-                className="flex items-center cursor-pointer text-xs hover:text-brand-700 text-brand-600"
+                className="flex items-center cursor-pointer font-mono text-xs text-[var(--ci-signal)] hover:underline"
                 onClick={() => {
                   onChange({
                     ...resource,

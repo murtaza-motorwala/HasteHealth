@@ -573,7 +573,7 @@ function SearchParameterSortControl({
       return (
         <ArrowUpIcon
           className={classNames(
-            "cursor-pointer w-4 h-4 hover:text-brand-400 text-brand-400",
+            "cursor-pointer w-4 h-4 text-[var(--ci-signal)] hover:opacity-80 transition-opacity",
           )}
           onClick={() => {
             const values = [
@@ -598,8 +598,8 @@ function SearchParameterSortControl({
     default: {
       return (
         <ArrowDownIcon
-          className={classNames("cursor-pointer w-4 h-4 hover:text-brand-400", {
-            "text-brand-400": (sortParam?.value ?? []).includes(
+          className={classNames("cursor-pointer w-4 h-4 hover:text-[var(--ci-signal)] transition-colors", {
+            "text-[var(--ci-signal)]": (sortParam?.value ?? []).includes(
               `-${searchParameter.code}`,
             ),
           })}
@@ -733,8 +733,8 @@ export function FHIRGenerativeSearchTableDisplay<Version extends FHIR_VERSION>({
                             openParamModal(true);
                           }}
                         >
-                          <div className="mr-2">{searchParameter.code}</div>
-                          <FunnelIcon className="hover:text-brand-400 cursor-pointer w-4 h-4" />
+                          <div className="mr-2 font-mono text-xs">{searchParameter.code}</div>
+                          <FunnelIcon className="hover:text-[var(--ci-signal)] cursor-pointer w-3.5 h-3.5 transition-colors" />
                         </button>
                         <div className="flex justify-end">
                           <SearchParameterSortControl

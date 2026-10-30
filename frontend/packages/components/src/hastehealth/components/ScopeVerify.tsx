@@ -39,22 +39,18 @@ export const ScopeVerifyForm = ({
   return (
     <Container logo={logo} title={title}>
       <div>
-        <div className="flex flex-col justify-center items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white space-y-2">
+        <div className="flex flex-col justify-center items-center mb-6 text-xl font-mono font-semibold text-[var(--ci-ink)] space-y-2">
           <div>
             {client.logoUri ? (
               <img
-                className="w-12 h-12 rounded-full"
+                className="w-12 h-12 rounded-none border border-[var(--ci-line)]"
                 src={client.logoUri}
                 alt="logo"
               />
             ) : (
               <div
                 className={classNames(
-                  "flex  justify-center items-center w-12 h-12 rounded-full",
-                  `bg-${generateTailwindColorFromValue(client.name)}-100`,
-                  `text-${generateTailwindColorFromValue(client.name)}-800`,
-                  `dark:bg-${generateTailwindColorFromValue(client.name)}-800`,
-                  `dark:text-${generateTailwindColorFromValue(client.name)}-100`,
+                  "flex justify-center items-center w-12 h-12 rounded-none border border-[var(--ci-line)] bg-[var(--ci-surface-raised)] font-mono text-base font-semibold text-[var(--ci-signal)]",
                 )}
               >
                 <div>{client.name.substring(0, 1).toUpperCase()}</div>
@@ -65,20 +61,20 @@ export const ScopeVerifyForm = ({
         </div>
       </div>
       <div>
-        <span className="text-sm text-gray-500">
+        <span className="font-mono text-xs text-[var(--ci-muted)]">
           The above app is requesting the following permissions. Please review
           and either consent or deny access for the app.
         </span>
       </div>
 
       <div className="max-h-72 overflow-auto">
-        <table className="border-collapse  list-inside list-disc w-full">
+        <table className="border-collapse list-inside list-disc w-full font-mono text-xs text-[var(--ci-ink)]">
           {authorizeParameters.scope?.split(" ").map((scope) => (
-            <tr className="border" key={scope}>
-              <td className="p-4">{scope}</td>
+            <tr className="border border-[var(--ci-line)]" key={scope}>
+              <td className="p-3">{scope}</td>
               <td>
                 <div className="items-center justify-center flex">
-                  <ExclamationCircleIcon className="w-6 h-6 text-gray-300" />
+                  <ExclamationCircleIcon className="w-5 h-5 text-[var(--ci-muted)] opacity-50" />
                 </div>
               </td>
             </tr>

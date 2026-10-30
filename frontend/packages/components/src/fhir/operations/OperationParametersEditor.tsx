@@ -101,7 +101,7 @@ function EntryEditor({
 }: EntryEditorProps) {
   if (isPartParameter(definition)) {
     return (
-      <div className="border-l-2 border-slate-200 pl-3">
+      <div className="border-l border-[var(--ci-line)] pl-3">
         <ParameterFields
           {...client}
           definitions={partDefinitions(definition)}
@@ -326,9 +326,9 @@ export function OperationParametersEditor({
       {body}
 
       {undeclared.length > 0 && (
-        <p className="rounded-md border border-amber-200 bg-amber-50 px-2 py-1.5 text-xs text-amber-800">
+        <p className="rounded-none border border-amber-500/30 bg-amber-500/10 px-2.5 py-1.5 font-mono text-xs text-amber-400">
           Not declared by the operation, sent as written in the JSON view:{" "}
-          <span className="font-mono">{undeclared.join(", ")}</span>
+          <span className="font-semibold">{undeclared.join(", ")}</span>
         </p>
       )}
     </div>
