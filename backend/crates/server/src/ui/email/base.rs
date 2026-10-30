@@ -17,7 +17,7 @@ pub fn base(uri: &Uri, children: &Markup) -> Markup {
                 tbody {
                     tr style="width:100%" {
                         td style="padding: 0px 24px; vertical-align: middle; width: 400px;" {
-                            img alt="Haste Health Logo" src=(img_url) width="100"  {}
+                            img alt="FHIR Fly Logo" src=(img_url) width="100"  {}
                         }
                     }
                 }

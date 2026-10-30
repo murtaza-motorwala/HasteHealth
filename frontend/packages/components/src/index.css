@@ -80,7 +80,7 @@
     box-shadow: var(--ci-hover-shadow);
   }
   .btn-primary {
-    @apply text-[#0a0a0a] bg-[var(--ci-signal)] border-[var(--ci-signal)] hover:bg-[var(--ci-signal-hover)] font-medium;
+    @apply text-white bg-[var(--ci-signal)] border-[var(--ci-signal)] hover:bg-[var(--ci-signal-hover)] font-semibold;
   }
   .btn-secondary {
     @apply text-[var(--ci-ink)] bg-[var(--ci-surface-raised)] border border-[var(--ci-line)] hover:bg-[var(--ci-surface-sunken)];

@@ -51,7 +51,7 @@ export function deriveProjectId(): ProjectId {
 }
 
 export function fhirResourceDocsUrl(resourceType: string): string {
-  return `https://haste.health/docs/reference/fhir/model/resources/${resourceType}`;
+  return `https://hl7.org/fhir/R4/${resourceType.toLowerCase()}.html`;
 }
 
 /**

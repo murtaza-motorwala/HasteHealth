@@ -33,19 +33,19 @@ export interface CommandBarProps {
 
 /** Colour for each verb, so the destructive ones read as such. */
 const VERB_CLASS: Record<Verb, string> = {
-  GET: "text-slate-700",
-  POST: "text-emerald-700",
-  PUT: "text-blue-700",
-  PATCH: "text-violet-700",
-  DELETE: "text-red-700",
+  GET: "text-[var(--ci-ink)]",
+  POST: "text-emerald-500",
+  PUT: "text-blue-500",
+  PATCH: "text-violet-500",
+  DELETE: "text-red-500",
 };
 
 /** Colours the Run button: amber for a mutation, brand for a read. */
 function runButtonClass(parsed: Command | undefined): string {
   if (!parsed) return "cursor-not-allowed bg-[var(--ci-surface-sunken)] text-[var(--ci-ink-muted)] border border-[var(--ci-line)]";
   return isMutation(parsed)
-    ? "bg-[var(--color-warning)] text-white hover:bg-[var(--color-warning-strong)] border border-[var(--color-warning)]"
-    : "bg-[var(--ci-signal)] text-[#0a0a0a] hover:bg-[var(--ci-signal-hover)] border border-[var(--ci-signal)]";
+    ? "bg-[var(--color-warning)] text-white hover:bg-[var(--color-warning-strong)] border border-[var(--color-warning)] font-mono font-semibold"
+    : "bg-[var(--ci-signal)] text-white hover:opacity-90 border border-[var(--ci-signal)] font-mono font-semibold";
 }
 
 /**

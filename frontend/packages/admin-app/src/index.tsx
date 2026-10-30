@@ -201,17 +201,17 @@ function SystemBar() {
   return (
     <div className="flex w-full flex-col overflow-y-auto z-10">
       {/* Quiet, so it does not compete with the create call to action. */}
-      <nav className="mb-6 flex shrink-0 gap-6 border-b border-slate-200">
+      <nav className="mb-6 flex shrink-0 gap-6 border-b border-[var(--ci-line)]">
         {SYSTEM_TABS.map(({ type, label }) => (
           <Link
             key={type}
             to={`/r/${type}`}
             className={classNames(
-              "-mb-px border-b-2 px-1 pb-3 text-sm transition-colors",
+              "-mb-px border-b-2 px-1 pb-3 text-xs font-mono tracking-wider transition-colors uppercase",
               {
-                ["border-brand-600 font-semibold text-brand-700"]:
+                ["border-[var(--ci-signal)] font-semibold text-[var(--ci-signal-ink)]"]:
                   params.resourceType === type,
-                ["border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-800"]:
+                ["border-transparent text-[var(--ci-muted)] hover:border-[var(--ci-line)] hover:text-[var(--ci-ink)]"]:
                   params.resourceType !== type,
               },
             )}
@@ -699,7 +699,7 @@ function ProjectRoot() {
           Made with <span aria-hidden="true">❤️</span> and <span aria-hidden="true">🔥</span> by Murtuza Motorwala
         </div>
         <div className="flex gap-4">
-          <a href="https://haste.health" target="_blank" rel="noreferrer" className="hover:text-[var(--ci-signal)] transition-colors">Docs</a>
+          <a href="https://hl7.org/fhir/R4/" target="_blank" rel="noreferrer" className="hover:text-[var(--ci-signal)] transition-colors">FHIR R4 Spec</a>
           <a href="#" className="hover:text-[var(--ci-signal)] transition-colors">Terms</a>
           <a href="#" className="hover:text-[var(--ci-signal)] transition-colors">Privacy</a>
         </div>

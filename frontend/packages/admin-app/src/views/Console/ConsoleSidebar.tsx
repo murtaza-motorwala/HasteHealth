@@ -38,7 +38,7 @@ const MODULE_ICONS: Record<string, typeof CubeIcon> = {
   Specialized: BeakerIcon,
   Foundation: WrenchScrewdriverIcon,
   "SQL on FHIR": TableCellsIcon,
-  "Haste Health": LockClosedIcon,
+  Platform: LockClosedIcon,
 };
 
 const OPERATE_LINKS = [

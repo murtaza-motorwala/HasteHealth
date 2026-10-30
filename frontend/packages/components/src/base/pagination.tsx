@@ -40,12 +40,12 @@ const PaginationItem = ({
         type="button"
         aria-current={active ? "page" : undefined}
         className={classNames(
-          "cursor-pointer flex items-center justify-center px-2 h-6 leading-tight",
+          "cursor-pointer flex items-center justify-center px-2.5 h-6 leading-tight font-mono text-xs rounded-none transition-colors",
           {
-            "text-brand-600 border border-slate-300 bg-brand-50 hover:bg-brand-100 hover:text-brand-700":
+            "text-white border border-[var(--ci-signal)] bg-[var(--ci-signal)] font-semibold":
               active,
 
-            "text-slate-500  border border-slate-300 hover:bg-slate-100 hover:text-slate-700 ":
+            "text-[var(--ci-muted)] border border-[var(--ci-line)] bg-[var(--ci-surface)] hover:bg-[var(--ci-surface-raised)] hover:text-[var(--ci-ink)]":
               !active,
           },
         )}
