@@ -56,6 +56,8 @@ import SystemResources from "./views/System";
 import { ProjectInformation } from "@haste-health/generated-ops/r4";
 import { R4 } from "@haste-health/fhir-types/versions";
 import { AppLogo } from "./components/AppLogo";
+import { ThemeProvider } from "./theme/ThemeProvider";
+import { ThemeToggle } from "./components/ThemeToggle";
 
 import "@haste-health/components/dist/index.css";
 import "./index.css";
@@ -68,19 +70,33 @@ function LoginWrapper() {
   return (
     <>
       {hasteHealth.loading ? (
-        <div className="h-screen flex flex-1 justify-center items-center flex-col">
+        <div className="h-screen w-screen flex flex-1 justify-center items-center flex-col bg-[var(--ci-bg)] text-[var(--ci-ink)]">
           <Loading />
-          <div className="mt-1 ">Loading...</div>
+          <div className="mt-3 font-mono text-xs text-[var(--ci-muted)] tracking-wider">
+            Loading FHIR Fly...
+          </div>
         </div>
       ) : hasteHealth.error ? (
-        <div className="h-screen flex">
-          <div className="flex-1 flex items-center justify-center">
-            <div className="p-4 bg-red-100 text-red-800 border border-red-400 rounded-md space-y-2">
-              <div className="font-bold">
-                {hasteHealth.error.code.split("_").map(capitalize).join(" ")}
-              </div>
-              <div>{hasteHealth.error.description}</div>
+        <div className="min-h-screen w-screen flex items-center justify-center bg-[var(--ci-bg)] p-6 text-[var(--ci-ink)]">
+          <div className="max-w-md w-full border border-[var(--ci-line)] bg-[var(--ci-surface)] p-6 space-y-4">
+            <div className="text-xs font-mono uppercase text-[var(--ci-signal)] font-semibold">
+              Authentication Notice
             </div>
+            <div className="text-sm font-semibold text-[var(--ci-ink)]">
+              {hasteHealth.error.code.split("_").map(capitalize).join(" ")}
+            </div>
+            <div className="text-xs text-[var(--ci-muted)]">
+              {hasteHealth.error.description}
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                window.location.href = window.location.pathname;
+              }}
+              className="w-full py-2 px-4 bg-[var(--ci-signal)] text-white text-xs font-mono font-medium hover:opacity-90 transition-opacity"
+            >
+              Sign In Again
+            </button>
           </div>
         </div>
       ) : (
@@ -112,14 +128,17 @@ function ServiceSetup() {
     hasteHealth.client,
   ]);
 
+  if (c) {
+    return <Outlet />;
+  }
+
   return (
-    <>
-      {c ? (
-        <>
-          <Outlet />
-        </>
-      ) : undefined}
-    </>
+    <div className="h-screen w-screen flex flex-col justify-center items-center bg-[var(--ci-bg)] text-[var(--ci-ink)]">
+      <Loading />
+      <div className="mt-3 font-mono text-xs text-[var(--ci-muted)] tracking-wider">
+        Initializing workspace...
+      </div>
+    </div>
   );
 }
 
@@ -214,17 +233,17 @@ const router =
           element: <HasteHealthWrapper />,
           children: [
             {
-              id: "empty-workspace",
-              path: "/no-workspace",
-              element: <EmptyWorkspace />,
-            },
-            {
-              path: "/",
-              element: <ServiceSetup />,
+              id: "login",
+              element: <LoginWrapper />,
               children: [
                 {
-                  id: "login",
-                  element: <LoginWrapper />,
+                  id: "empty-workspace",
+                  path: "/no-workspace",
+                  element: <EmptyWorkspace />,
+                },
+                {
+                  path: "/",
+                  element: <ServiceSetup />,
                   children: [
                     {
                       id: "system-root",
@@ -339,28 +358,22 @@ function Navbar({ showLogo = true }: Readonly<{ showLogo?: boolean }>) {
   const navigate = useNavigate();
 
   return (
-    <div className="px-4 sticky top-0 bg-white border-b z-20 text-sm">
+    <div className="px-4 sticky top-0 bg-[var(--ci-surface)] border-b border-[var(--ci-line)] text-[var(--ci-ink)] z-20 text-sm">
       <div className={`flex items-center ${APP_HEADER_HEIGHT_CLASS}`}>
         {showLogo && (
           <AppLogo
-            className="h-9 mr-4 cursor-pointer text-brand-500"
+            className="h-8 mr-4 cursor-pointer"
             onClick={() => {
               navigate(generatePath("/", {}));
             }}
           />
         )}
         <div className="flex grow"></div>
-        <div className="flex justify-center items-center space-x-8">
+        <div className="flex justify-center items-center space-x-4">
           <div className="min-w-72 flex grow">
             <Search />
           </div>
-          <a
-            target="_blank"
-            className="cursor text-slate-500 hover:text-slate-600 hover:underline"
-            href="https://haste.health"
-          >
-            Documentation
-          </a>
+          <ThemeToggle />
           <ProfileDropdown
             user={{
               email: hasteHealth.user?.email,
@@ -369,9 +382,9 @@ function Navbar({ showLogo = true }: Readonly<{ showLogo?: boolean }>) {
             }}
           >
             <div>
-              <div className="mt-2">
+              <div className="mt-2 bg-[var(--ci-surface-raised)] border border-[var(--ci-line)]">
                 <button
-                  className="block w-full cursor-pointer px-4 py-2 text-left text-sm hover:bg-brand-200 hover:text-brand-800"
+                  className="block w-full cursor-pointer px-4 py-2 text-left text-sm text-[var(--ci-ink)] hover:bg-[var(--ci-signal-soft)] hover:text-[var(--ci-signal-ink)] transition-colors"
                   onClick={() => {
                     navigate(generatePath("/settings", {}));
                   }}
@@ -380,7 +393,7 @@ function Navbar({ showLogo = true }: Readonly<{ showLogo?: boolean }>) {
                   Settings
                 </button>
                 <button
-                  className="block w-full cursor-pointer px-4 py-2 text-left text-sm text-slate-800 hover:bg-brand-200 hover:text-brand-800"
+                  className="block w-full cursor-pointer px-4 py-2 text-left text-sm text-[var(--ci-ink)] hover:bg-[var(--ci-signal-soft)] hover:text-[var(--ci-signal-ink)] transition-colors"
                   onClick={() => {
                     hasteHealth.logout(window.location.origin);
                   }}
@@ -591,11 +604,11 @@ function ProjectRoot() {
     // `w-full` and `min-w-0` because the shell is a flex item inside the
     // login wrapper: without them it is sized by its content and leaves the
     // right of the screen empty.
-    <div className="flex h-screen w-full min-w-0 flex-col overflow-hidden bg-slate-100">
-      <header className="flex h-12 shrink-0 items-center gap-2 border-b border-slate-200 bg-white px-3">
+    <div className="flex h-screen w-full min-w-0 flex-col overflow-hidden bg-[var(--ci-bg)] text-[var(--ci-ink)]">
+      <header className="flex h-12 shrink-0 items-center gap-3 border-b border-[var(--ci-line)] bg-[var(--ci-surface)] px-3 text-[var(--ci-ink)]">
         {/* Below `lg` the sidebar is a drawer rather than a column. */}
         <button
-          className="rounded p-1 text-slate-500 hover:bg-slate-100 lg:hidden"
+          className="rounded-none p-1 text-[var(--ci-ink-muted)] hover:bg-[var(--ci-surface-sunken)] hover:text-[var(--ci-ink)] lg:hidden"
           onClick={() => setSidebarOpen((open) => !open)}
           title="Toggle navigation"
           type="button"
@@ -604,47 +617,45 @@ function ProjectRoot() {
         </button>
 
         <AppLogo
-          className="h-7 w-7 shrink-0 cursor-pointer text-brand-500"
+          className="h-8 shrink-0 cursor-pointer"
           onClick={() => go("/")}
         />
-        <button
-          className="min-w-0 truncate text-left text-sm font-semibold text-slate-800 hover:underline"
-          onClick={() => go("/")}
-          type="button"
-        >
-          {tenantDisplayName}
-          {project?.name && (
-            <span className="ml-1 font-normal text-slate-400">
-              / {project.name}
-            </span>
-          )}
-        </button>
-
-        <div className="flex flex-1 justify-end items-center gap-4">
-          <a
-            className="hidden text-xs text-slate-500 hover:text-slate-700 hover:underline sm:block"
-            href="https://haste.health"
-            rel="noreferrer"
-            target="_blank"
+        <div className="flex items-center gap-2 min-w-0">
+          <button
+            className="min-w-0 truncate text-left text-sm font-semibold text-[var(--ci-ink)] hover:text-[var(--ci-signal)] transition-colors"
+            onClick={() => go("/")}
+            type="button"
           >
-            Docs
-          </a>
+            {tenantDisplayName}
+            {project?.name && (
+              <span className="ml-1 font-normal text-[var(--ci-ink-subtle)]">
+                / {project.name}
+              </span>
+            )}
+          </button>
+          <span className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono border border-[var(--ci-line)] bg-[var(--ci-surface-raised)] text-[var(--ci-signal-ink)]">
+            FHIR R4
+          </span>
+        </div>
+
+        <div className="flex flex-1 justify-end items-center gap-3">
+          <ThemeToggle />
           <ProfileDropdown
             user={{
               email: hasteHealth.user?.email,
               name: hasteHealth.user?.given_name || hasteHealth.user?.email,
             }}
           >
-            <div className="mt-2">
+            <div className="mt-2 bg-[var(--ci-surface-raised)] border border-[var(--ci-line)]">
               <button
-                className="block w-full cursor-pointer px-4 py-2 text-left text-sm hover:bg-brand-200 hover:text-brand-800"
+                className="block w-full cursor-pointer px-4 py-2 text-left text-sm text-[var(--ci-ink)] hover:bg-[var(--ci-signal-soft)] hover:text-[var(--ci-signal-ink)] transition-colors"
                 onClick={() => go("/settings")}
                 type="button"
               >
                 Settings
               </button>
               <button
-                className="block w-full cursor-pointer px-4 py-2 text-left text-sm text-slate-800 hover:bg-brand-200 hover:text-brand-800"
+                className="block w-full cursor-pointer px-4 py-2 text-left text-sm text-[var(--ci-ink)] hover:bg-[var(--ci-signal-soft)] hover:text-[var(--ci-signal-ink)] transition-colors"
                 onClick={() => hasteHealth.logout(window.location.origin)}
                 type="button"
               >
@@ -668,7 +679,7 @@ function ProjectRoot() {
           </div>
         )}
 
-        <main className="flex min-h-0 min-w-0 flex-1 flex-col p-3">
+        <main className="flex min-h-0 min-w-0 flex-1 flex-col p-3 bg-[var(--ci-bg)]">
           <Toaster.Toaster />
           <React.Suspense
             fallback={
@@ -682,6 +693,18 @@ function ProjectRoot() {
         </main>
       </div>
 
+      <footer className="flex h-8 shrink-0 items-center justify-between border-t border-[var(--ci-line)] bg-[var(--ci-surface)] px-4 text-[11px] text-[var(--ci-ink-subtle)] font-mono">
+        <div>© 2026 FHIR Fly. All rights reserved.</div>
+        <div className="hidden sm:block">
+          Made with <span aria-hidden="true">❤️</span> and <span aria-hidden="true">🔥</span> by Murtuza Motorwala
+        </div>
+        <div className="flex gap-4">
+          <a href="https://haste.health" target="_blank" rel="noreferrer" className="hover:text-[var(--ci-signal)] transition-colors">Docs</a>
+          <a href="#" className="hover:text-[var(--ci-signal)] transition-colors">Terms</a>
+          <a href="#" className="hover:text-[var(--ci-signal)] transition-colors">Privacy</a>
+        </div>
+      </footer>
+
       {shortcutsOpen && (
         <ShortcutHelp
           shortcuts={shortcuts}
@@ -693,7 +716,11 @@ function ProjectRoot() {
 }
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  );
 }
 
 const legacyUrl = legacyHostnameRedirectUrl();

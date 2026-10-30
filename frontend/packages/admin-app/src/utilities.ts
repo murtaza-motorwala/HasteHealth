@@ -20,6 +20,10 @@ const LEGACY_HOSTNAME_ID_SEPARATOR = "_";
  */
 export function legacyHostnameRedirectUrl(): string | undefined {
   const url = new URL(window.location.href);
+  if (url.hostname === "localhost" || url.hostname === "127.0.0.1") {
+    url.hostname = "my-health--system.localhost";
+    return url.toString();
+  }
   const [label, ...domain] = url.hostname.split(".");
   if (!label?.includes(LEGACY_HOSTNAME_ID_SEPARATOR)) {
     return undefined;

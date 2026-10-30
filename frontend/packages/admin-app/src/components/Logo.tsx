@@ -1,43 +1,26 @@
 import React from "react";
 
 export const Logo = ({
-  className = "text-brand-500",
+  className = "h-8",
   onClick,
 }: Readonly<{ className?: string; onClick?: () => void }>) => (
-  <svg
-    viewBox="0 0 100 100"
-    preserveAspectRatio="xMidYMid meet"
-    role="img"
-    xmlns="http://www.w3.org/2000/svg"
-    className={className}
+  <div
+    className={`inline-flex items-center gap-2 cursor-pointer select-none ${className}`}
     onClick={onClick}
+    role="banner"
   >
-    <title>Haste Health logo</title>
-    <desc>
-      Haste Health logo with three teal pulse bars beside the wordmark
-      haste.health
-    </desc>
-
-    <g>
-      <rect
-        x="6"
-        y="22"
-        width="24"
-        height="56"
-        rx="6"
-        fill="#0d9488"
-        opacity="0.45"
-      />
-      <rect x="38" y="0" width="24" height="100" rx="6" fill="#0d9488" />
-      <rect
-        x="70"
-        y="32"
-        width="24"
-        height="36"
-        rx="6"
-        fill="#0d9488"
-        opacity="0.7"
-      />
-    </g>
-  </svg>
+    <img
+      src="/f1.png"
+      alt="FHIR Fly"
+      className="h-8 w-auto object-contain filter drop-shadow-[0_0_8px_rgba(229,69,26,0.4)]"
+    />
+    <div className="flex flex-col">
+      <span className="font-display font-bold text-lg leading-tight tracking-tight text-[var(--ci-ink)]">
+        FHIR Fly
+      </span>
+      <span className="font-mono text-[9px] uppercase tracking-widest text-[var(--ci-signal-ink)] -mt-0.5">
+        FHIR Server
+      </span>
+    </div>
+  </div>
 );
